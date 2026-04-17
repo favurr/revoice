@@ -1,12 +1,11 @@
 import { app, BrowserWindow, shell } from 'electron'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { setupIntegrity } from '@electron/tailwind'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const isDev = !app.isPackaged
+const isDev = process.env.NODE_ENV === 'development';
 
 let mainWindow: BrowserWindow | null = null
 
@@ -23,8 +22,6 @@ function createWindow() {
     },
     titleBarStyle: 'hiddenInset',
   })
-
-  setupIntegrity(mainWindow, join(__dirname, '..'))
 
   if (isDev) {
     mainWindow.loadURL('http://localhost:3000')
