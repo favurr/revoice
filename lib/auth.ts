@@ -6,7 +6,7 @@ import prisma from "./prisma";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
-    provider: "postgresql",
+    provider: "sqlite",
   }),
   emailAndPassword: {
     enabled: true,
@@ -16,7 +16,10 @@ export const auth = betterAuth({
     expiresIn: 30 * 24 * 60 * 60, // 30 days
   },
   plugins: [nextCookies()],
-  trustedOrigins: [String(process.env.NEXT_PUBLIC_BASE_URL)],
+  trustedOrigins: [
+    String(process.env.BETTER_AUTH_URL || "http://localhost:3000"),
+  ],
+  secret: process.env.BETTER_AUTH_SECRET,
 });
 
 export type Errorcode = keyof typeof auth.$ERROR_CODES | "UNKNOWN_ERROR";
