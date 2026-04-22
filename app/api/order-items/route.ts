@@ -17,6 +17,25 @@ export async function POST(request: NextRequest) {
     const { orderId, productId, quantity, price } =
       CreateOrderItemSchema.parse(body);
 
+    // Check if product exists and has sufficient stock
+    const product = await prisma.product.findUnique({
+      where: { id: productId },
+    });
+
+    if (!product) {
+      return NextResponse.json(
+        { error: "Product not found" },
+        { status: 404 },
+      );
+    }
+
+    if (product.stock < quantity) {
+      return NextResponse.json(
+        { error: `Insufficient stock. Available: ${product.stock}, Requested: ${quantity}` },
+        { status: 400 },
+      );
+    }
+
     // Calculate total
     const total = quantity * price;
 

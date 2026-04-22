@@ -7,6 +7,7 @@ import { APIError } from "better-auth/api";
 export async function signInAction(email: string, password: string) {
   try {
     await auth.api.signInEmail({
+      headers: await headers(),
       body: {
         email,
         password,

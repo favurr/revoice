@@ -238,7 +238,7 @@ export type VerificationScalarWhereWithAggregatesInput = {
 }
 
 export type VerificationCreateInput = {
-  id: string
+  id?: string
   identifier: string
   value: string
   expiresAt: Date | string
@@ -247,7 +247,7 @@ export type VerificationCreateInput = {
 }
 
 export type VerificationUncheckedCreateInput = {
-  id: string
+  id?: string
   identifier: string
   value: string
   expiresAt: Date | string
@@ -274,7 +274,7 @@ export type VerificationUncheckedUpdateInput = {
 }
 
 export type VerificationCreateManyInput = {
-  id: string
+  id?: string
   identifier: string
   value: string
   expiresAt: Date | string
@@ -1016,7 +1016,6 @@ export type VerificationCreateManyArgs<ExtArgs extends runtime.Types.Extensions.
    * The data used to create many Verifications.
    */
   data: Prisma.VerificationCreateManyInput | Prisma.VerificationCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1035,7 +1034,6 @@ export type VerificationCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * The data used to create many Verifications.
    */
   data: Prisma.VerificationCreateManyInput | Prisma.VerificationCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**

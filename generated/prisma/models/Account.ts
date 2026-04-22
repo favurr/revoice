@@ -325,7 +325,7 @@ export type AccountScalarWhereWithAggregatesInput = {
 }
 
 export type AccountCreateInput = {
-  id: string
+  id?: string
   accountId: string
   providerId: string
   accessToken?: string | null
@@ -341,7 +341,7 @@ export type AccountCreateInput = {
 }
 
 export type AccountUncheckedCreateInput = {
-  id: string
+  id?: string
   accountId: string
   providerId: string
   userId: string
@@ -389,7 +389,7 @@ export type AccountUncheckedUpdateInput = {
 }
 
 export type AccountCreateManyInput = {
-  id: string
+  id?: string
   accountId: string
   providerId: string
   userId: string
@@ -540,7 +540,7 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
 }
 
 export type AccountCreateWithoutUserInput = {
-  id: string
+  id?: string
   accountId: string
   providerId: string
   accessToken?: string | null
@@ -555,7 +555,7 @@ export type AccountCreateWithoutUserInput = {
 }
 
 export type AccountUncheckedCreateWithoutUserInput = {
-  id: string
+  id?: string
   accountId: string
   providerId: string
   accessToken?: string | null
@@ -576,7 +576,6 @@ export type AccountCreateOrConnectWithoutUserInput = {
 
 export type AccountCreateManyUserInputEnvelope = {
   data: Prisma.AccountCreateManyUserInput | Prisma.AccountCreateManyUserInput[]
-  skipDuplicates?: boolean
 }
 
 export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -615,7 +614,7 @@ export type AccountScalarWhereInput = {
 }
 
 export type AccountCreateManyUserInput = {
-  id: string
+  id?: string
   accountId: string
   providerId: string
   accessToken?: string | null
@@ -1444,7 +1443,6 @@ export type AccountCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many Accounts.
    */
   data: Prisma.AccountCreateManyInput | Prisma.AccountCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1463,7 +1461,6 @@ export type AccountCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many Accounts.
    */
   data: Prisma.AccountCreateManyInput | Prisma.AccountCreateManyInput[]
-  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

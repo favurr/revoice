@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 const CreateProductSchema = z.object({
   name: z.string().min(1),
   price: z.number().positive(),
+  costPrice: z.number().nonnegative().optional(),
   stock: z.number().int().nonnegative().optional(),
   sku: z.string().optional(),
 });
@@ -14,6 +15,7 @@ const CreateProductSchema = z.object({
 const UpdateProductSchema = z.object({
   name: z.string().min(1).optional(),
   price: z.number().positive().optional(),
+  costPrice: z.number().nonnegative().optional(),
   stock: z.number().int().nonnegative().optional(),
   sku: z.string().optional(),
 });
@@ -46,12 +48,13 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, price, stock, sku } = CreateProductSchema.parse(body);
+    const { name, price, costPrice, stock, sku } = CreateProductSchema.parse(body);
 
     const product = await prisma.product.create({
       data: {
         name,
         price,
+        costPrice: costPrice || 0,
         stock: stock || 0,
         sku: sku || undefined,
       },
@@ -85,13 +88,14 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
-    const { name, price, stock, sku } = UpdateProductSchema.parse(updateData);
+    const { name, price, costPrice, stock, sku } = UpdateProductSchema.parse(updateData);
 
     const product = await prisma.product.update({
       where: { id: productId },
       data: {
         ...(name && { name }),
         ...(price && { price }),
+        ...(costPrice !== undefined && { costPrice }),
         ...(stock !== undefined && { stock }),
         ...(sku && { sku }),
       },

@@ -265,7 +265,7 @@ export type SessionScalarWhereWithAggregatesInput = {
 }
 
 export type SessionCreateInput = {
-  id: string
+  id?: string
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
@@ -276,7 +276,7 @@ export type SessionCreateInput = {
 }
 
 export type SessionUncheckedCreateInput = {
-  id: string
+  id?: string
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
@@ -309,7 +309,7 @@ export type SessionUncheckedUpdateInput = {
 }
 
 export type SessionCreateManyInput = {
-  id: string
+  id?: string
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
@@ -426,7 +426,7 @@ export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type SessionCreateWithoutUserInput = {
-  id: string
+  id?: string
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
@@ -436,7 +436,7 @@ export type SessionCreateWithoutUserInput = {
 }
 
 export type SessionUncheckedCreateWithoutUserInput = {
-  id: string
+  id?: string
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
@@ -452,7 +452,6 @@ export type SessionCreateOrConnectWithoutUserInput = {
 
 export type SessionCreateManyUserInputEnvelope = {
   data: Prisma.SessionCreateManyUserInput | Prisma.SessionCreateManyUserInput[]
-  skipDuplicates?: boolean
 }
 
 export type SessionUpsertWithWhereUniqueWithoutUserInput = {
@@ -486,7 +485,7 @@ export type SessionScalarWhereInput = {
 }
 
 export type SessionCreateManyUserInput = {
-  id: string
+  id?: string
   expiresAt: Date | string
   token: string
   createdAt?: Date | string
@@ -1265,7 +1264,6 @@ export type SessionCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many Sessions.
    */
   data: Prisma.SessionCreateManyInput | Prisma.SessionCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1284,7 +1282,6 @@ export type SessionCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many Sessions.
    */
   data: Prisma.SessionCreateManyInput | Prisma.SessionCreateManyInput[]
-  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

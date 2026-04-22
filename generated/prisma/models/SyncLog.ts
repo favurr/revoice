@@ -1100,7 +1100,6 @@ export type SyncLogCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many SyncLogs.
    */
   data: Prisma.SyncLogCreateManyInput | Prisma.SyncLogCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1119,7 +1118,6 @@ export type SyncLogCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many SyncLogs.
    */
   data: Prisma.SyncLogCreateManyInput | Prisma.SyncLogCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**

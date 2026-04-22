@@ -1,5 +1,20 @@
-import { supabase } from "@/utils/supabase-client";
+import { createClient } from "@supabase/supabase-js";
 import prisma from "./prisma";
+
+const supabaseUrl = process.env.SUPABASE_SYNC_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SYNC_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("Missing Supabase sync environment variables");
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+    detectSessionInUrl: false,
+  },
+});
 
 /**
  * Sync Orders to Supabase

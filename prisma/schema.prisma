@@ -2,17 +2,18 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // SQLite for offline-first desktop app
+
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "sqlite" //prisma 7 doesn't support "url field" anymore
+  provider = "sqlite"
 }
 
 model User {
-  id            String   @id
+  id            String   @id @default(cuid())
   name          String
   email         String
   emailVerified Boolean  @default(false)
@@ -30,8 +31,21 @@ model User {
   @@map("user")
 }
 
+model Customer {
+  id         String   @id @default(cuid())
+  name       String
+  email      String?  @unique
+  phone      String?  
+  address    String?
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  orders     Order[]
+}
+
 model Session {
-  id        String   @id
+  id        String   @id @default(cuid())
   expiresAt DateTime
   token     String
   createdAt DateTime @default(now())
@@ -48,7 +62,7 @@ model Session {
 }
 
 model Account {
-  id                    String    @id
+  id                    String    @id @default(cuid())
   accountId             String
   providerId            String
   userId                String
@@ -69,7 +83,7 @@ model Account {
 }
 
 model Verification {
-  id         String   @id
+  id         String   @id @default(cuid())
   identifier String
   value      String
   expiresAt  DateTime
@@ -93,33 +107,38 @@ model SyncLog {
 }
 
 model Product {
-  id        String   @id @default(cuid())
-  name      String
-  price     Float
-  stock     Int      @default(0)
-  sku       String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  isActive  Boolean  @default(true)
+  id         String   @id @default(cuid())
+  name       String
+  price      Float
+  costPrice  Float    @default(0)
+  stock      Int      @default(0)
+  sku        String?  @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isActive   Boolean  @default(true)
 
   orderItems OrderItem[]
 }
 
 model Order {
-  id          String   @id @default(cuid())
-  orderNumber String   @unique
-  totalAmount Float    @default(0)
-  status      String   @default("completed")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  userId      String?
+  id           String   @id @default(cuid())
+  orderNumber  String   @unique
+  totalAmount  Float    @default(0)
+  discount     Float    @default(0)
+  status       String   @default("pending")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  userId       String?
+  customerId   String?
 
   user User? @relation(fields: [userId], references: [id])
+  customer Customer? @relation(fields: [customerId], references: [id])
 
   orderItems OrderItem[]
 
   @@index([createdAt])
   @@index([orderNumber])
+  @@index([customerId])
 }
 
 model OrderItem {

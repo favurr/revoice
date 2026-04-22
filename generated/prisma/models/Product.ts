@@ -28,11 +28,13 @@ export type AggregateProduct = {
 
 export type ProductAvgAggregateOutputType = {
   price: number | null
+  costPrice: number | null
   stock: number | null
 }
 
 export type ProductSumAggregateOutputType = {
   price: number | null
+  costPrice: number | null
   stock: number | null
 }
 
@@ -40,6 +42,7 @@ export type ProductMinAggregateOutputType = {
   id: string | null
   name: string | null
   price: number | null
+  costPrice: number | null
   stock: number | null
   sku: string | null
   createdAt: Date | null
@@ -51,6 +54,7 @@ export type ProductMaxAggregateOutputType = {
   id: string | null
   name: string | null
   price: number | null
+  costPrice: number | null
   stock: number | null
   sku: string | null
   createdAt: Date | null
@@ -62,6 +66,7 @@ export type ProductCountAggregateOutputType = {
   id: number
   name: number
   price: number
+  costPrice: number
   stock: number
   sku: number
   createdAt: number
@@ -73,11 +78,13 @@ export type ProductCountAggregateOutputType = {
 
 export type ProductAvgAggregateInputType = {
   price?: true
+  costPrice?: true
   stock?: true
 }
 
 export type ProductSumAggregateInputType = {
   price?: true
+  costPrice?: true
   stock?: true
 }
 
@@ -85,6 +92,7 @@ export type ProductMinAggregateInputType = {
   id?: true
   name?: true
   price?: true
+  costPrice?: true
   stock?: true
   sku?: true
   createdAt?: true
@@ -96,6 +104,7 @@ export type ProductMaxAggregateInputType = {
   id?: true
   name?: true
   price?: true
+  costPrice?: true
   stock?: true
   sku?: true
   createdAt?: true
@@ -107,6 +116,7 @@ export type ProductCountAggregateInputType = {
   id?: true
   name?: true
   price?: true
+  costPrice?: true
   stock?: true
   sku?: true
   createdAt?: true
@@ -205,6 +215,7 @@ export type ProductGroupByOutputType = {
   id: string
   name: string
   price: number
+  costPrice: number
   stock: number
   sku: string | null
   createdAt: Date
@@ -239,6 +250,7 @@ export type ProductWhereInput = {
   id?: Prisma.StringFilter<"Product"> | string
   name?: Prisma.StringFilter<"Product"> | string
   price?: Prisma.FloatFilter<"Product"> | number
+  costPrice?: Prisma.FloatFilter<"Product"> | number
   stock?: Prisma.IntFilter<"Product"> | number
   sku?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -251,6 +263,7 @@ export type ProductOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  costPrice?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   sku?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -267,6 +280,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ProductWhereInput | Prisma.ProductWhereInput[]
   name?: Prisma.StringFilter<"Product"> | string
   price?: Prisma.FloatFilter<"Product"> | number
+  costPrice?: Prisma.FloatFilter<"Product"> | number
   stock?: Prisma.IntFilter<"Product"> | number
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -278,6 +292,7 @@ export type ProductOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  costPrice?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   sku?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -297,6 +312,7 @@ export type ProductScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Product"> | string
   name?: Prisma.StringWithAggregatesFilter<"Product"> | string
   price?: Prisma.FloatWithAggregatesFilter<"Product"> | number
+  costPrice?: Prisma.FloatWithAggregatesFilter<"Product"> | number
   stock?: Prisma.IntWithAggregatesFilter<"Product"> | number
   sku?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
@@ -308,6 +324,7 @@ export type ProductCreateInput = {
   id?: string
   name: string
   price: number
+  costPrice?: number
   stock?: number
   sku?: string | null
   createdAt?: Date | string
@@ -320,6 +337,7 @@ export type ProductUncheckedCreateInput = {
   id?: string
   name: string
   price: number
+  costPrice?: number
   stock?: number
   sku?: string | null
   createdAt?: Date | string
@@ -332,6 +350,7 @@ export type ProductUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
+  costPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   sku?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -344,6 +363,7 @@ export type ProductUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
+  costPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   sku?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -356,6 +376,7 @@ export type ProductCreateManyInput = {
   id?: string
   name: string
   price: number
+  costPrice?: number
   stock?: number
   sku?: string | null
   createdAt?: Date | string
@@ -367,6 +388,7 @@ export type ProductUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
+  costPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   sku?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -378,6 +400,7 @@ export type ProductUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
+  costPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   sku?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -389,6 +412,7 @@ export type ProductCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  costPrice?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   sku?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -398,6 +422,7 @@ export type ProductCountOrderByAggregateInput = {
 
 export type ProductAvgOrderByAggregateInput = {
   price?: Prisma.SortOrder
+  costPrice?: Prisma.SortOrder
   stock?: Prisma.SortOrder
 }
 
@@ -405,6 +430,7 @@ export type ProductMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  costPrice?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   sku?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -416,6 +442,7 @@ export type ProductMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  costPrice?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   sku?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -425,6 +452,7 @@ export type ProductMinOrderByAggregateInput = {
 
 export type ProductSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
+  costPrice?: Prisma.SortOrder
   stock?: Prisma.SortOrder
 }
 
@@ -467,6 +495,7 @@ export type ProductCreateWithoutOrderItemsInput = {
   id?: string
   name: string
   price: number
+  costPrice?: number
   stock?: number
   sku?: string | null
   createdAt?: Date | string
@@ -478,6 +507,7 @@ export type ProductUncheckedCreateWithoutOrderItemsInput = {
   id?: string
   name: string
   price: number
+  costPrice?: number
   stock?: number
   sku?: string | null
   createdAt?: Date | string
@@ -505,6 +535,7 @@ export type ProductUpdateWithoutOrderItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
+  costPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   sku?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -516,6 +547,7 @@ export type ProductUncheckedUpdateWithoutOrderItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
+  costPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   sku?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -558,6 +590,7 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   price?: boolean
+  costPrice?: boolean
   stock?: boolean
   sku?: boolean
   createdAt?: boolean
@@ -571,6 +604,7 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   price?: boolean
+  costPrice?: boolean
   stock?: boolean
   sku?: boolean
   createdAt?: boolean
@@ -582,6 +616,7 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   price?: boolean
+  costPrice?: boolean
   stock?: boolean
   sku?: boolean
   createdAt?: boolean
@@ -593,6 +628,7 @@ export type ProductSelectScalar = {
   id?: boolean
   name?: boolean
   price?: boolean
+  costPrice?: boolean
   stock?: boolean
   sku?: boolean
   createdAt?: boolean
@@ -600,7 +636,7 @@ export type ProductSelectScalar = {
   isActive?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "price" | "stock" | "sku" | "createdAt" | "updatedAt" | "isActive", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "price" | "costPrice" | "stock" | "sku" | "createdAt" | "updatedAt" | "isActive", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   orderItems?: boolean | Prisma.Product$orderItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -617,6 +653,7 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     name: string
     price: number
+    costPrice: number
     stock: number
     sku: string | null
     createdAt: Date
@@ -1049,6 +1086,7 @@ export interface ProductFieldRefs {
   readonly id: Prisma.FieldRef<"Product", 'String'>
   readonly name: Prisma.FieldRef<"Product", 'String'>
   readonly price: Prisma.FieldRef<"Product", 'Float'>
+  readonly costPrice: Prisma.FieldRef<"Product", 'Float'>
   readonly stock: Prisma.FieldRef<"Product", 'Int'>
   readonly sku: Prisma.FieldRef<"Product", 'String'>
   readonly createdAt: Prisma.FieldRef<"Product", 'DateTime'>
@@ -1288,7 +1326,6 @@ export type ProductCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many Products.
    */
   data: Prisma.ProductCreateManyInput | Prisma.ProductCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1307,7 +1344,6 @@ export type ProductCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many Products.
    */
   data: Prisma.ProductCreateManyInput | Prisma.ProductCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
