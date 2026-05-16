@@ -12,7 +12,7 @@
     "dev:electron": "wait-on http://localhost:3000/dashboard && cross-env NODE_ENV=development tsx electron/main.ts",
     "dev:electron-ex": "cross-env NODE_ENV=development tsx electron/main.ts",
     "build": "npm run build:next && npm run build:electron",
-    "package": "npm run build && electron-builder",
+    "package": "cross-env electron_builder_always_use_discovery=true npm run build && electron-builder",
     "build:next": "next build",
     "build:electron": "tsc -p electron/tsconfig.json",
     "start": "next start",
@@ -79,20 +79,24 @@
     "typescript": "^5",
     "wait-on": "^9.0.5"
   },
-  "build": {
+    "build": {
     "appId": "com.revoice.app",
     "productName": "Revoice",
+    "directories": {
+      "output": "dist_electron"
+    },
     "files": [
-      "dist/**/*",
-      ".next/standalone/**/*",
-      "prisma/dev.db",
-      "generated/**/*",
-      "node_modules/**/*"
+      "dist/electron/**/*",
+      "package.json"
     ],
     "extraResources": [
       {
         "from": "prisma/dev.db",
         "to": "prisma/dev.db"
+      },
+      {
+        "from": ".next/standalone",
+        "to": "app.asar.unpacked/.next/standalone"
       },
       {
         "from": ".next/static",
@@ -103,19 +107,21 @@
         "to": "app.asar.unpacked/.next/standalone/public"
       }
     ],
+    "asar": true,
     "asarUnpack": [
-      "**/*.{node,dll}",
-      ".next/standalone/**/*",
-      "node_modules/better-sqlite3/**/*"
+      "**/node_modules/better-sqlite3/**",
+      "**/node_modules/.prisma/client/**",
+      "**/node_modules/@prisma/client/**"
     ],
-    "directories": {
-      "output": "dist_electron"
-    },
     "win": {
-      "target": [
-        "nsis"
-      ],
+      "target": ["nsis"],
       "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "mac": {
+      "target": ["dmg"]
+    },
+    "linux": {
+      "target": ["AppImage"]
     }
   },
   "pnpm": {

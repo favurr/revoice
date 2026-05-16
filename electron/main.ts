@@ -67,7 +67,17 @@ function ensureDatabaseIsWritable() {
     log("Database copied to userData");
   }
 
+  // Set the dynamic DB connection string for the Prisma client
   process.env.DATABASE_URL = `file:${destinationDbPath}`;
+
+  // FORCE Prisma to run its queries using the unpacked node_modules engines
+  if (app.isPackaged) {
+    const unpackedModules = join(process.resourcesPath, "app.asar.unpacked", "node_modules");
+    
+    // Inject the custom binary overrides for production execution environments
+    process.env.PRISMA_QUERY_ENGINE_BINARY = join(unpackedModules, "@prisma/client", "runtime");
+    process.env.PRISMA_SCHEMA_ENGINE_BINARY = join(unpackedModules, "@prisma/client", "runtime");
+  }
 }
 
 async function waitForNextServer(url: string, retries = 50, delayMs = 200) {

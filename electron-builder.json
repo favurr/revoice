@@ -1,0 +1,48 @@
+{
+  "productName": "Revoice",
+  "appId": "com.revoice.app",
+  "directories": {
+    "output": "dist/installers",
+    "buildResources": "build"
+  },
+  "files": [
+    "dist/electron/**/*",
+    "package.json"
+  ],
+  "extraResources": [
+    {
+      "from": "prisma/dev.db",
+      "to": "prisma/dev.db"
+    },
+    {
+      "from": ".next/standalone",
+      "to": "app.asar.unpacked/.next/standalone"
+    },
+    {
+      "from": ".next/static",
+      "to": "app.asar.unpacked/.next/standalone/.next/static"
+    },
+    {
+      "from": "public",
+      "to": "app.asar.unpacked/.next/standalone/public"
+    }
+  ],
+  "asar": true,
+  "asarUnpack": [
+    "**/node_modules/.prisma/client/**",
+    "**/node_modules/@prisma/client/**"
+  ],
+  "win": {
+    "target": ["nsis"]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true
+  },
+  "mac": {
+    "target": ["dmg"]
+  },
+  "linux": {
+    "target": ["AppImage", "deb"]
+  }
+}
